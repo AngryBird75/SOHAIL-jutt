@@ -1,0 +1,40 @@
+<%- include('partials/header', { title: 'Login' }) %>
+
+<div class="login-container">
+  <div class="login-box">
+    <h1 style="
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #FF1493;
+  
+    font-family: Didot, serif;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(to right, #ffccff, #ffe6ff);
+    
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  ">Allah Waris Ruter Stater </h1>
+ <H4 style="
+  font-family: Didot, serif;"> OWNER: SOHAIL JUTT</H4>
+  <h4 style="
+  font-family: Didot, serif;">CONTACT: 03006450610</H4>
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+    <form action="/login" method="POST">
+      <div class="form-grid">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <br>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<%- include('partials/header', { title: 'Search Person' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <div class="form-section">
+    <h2>🔍 Search Person Details</h2>
+    <form method="GET" action="/search">
+      <input name="person" placeholder="Enter person name" required value="<%= typeof searchPerson !== 'undefined' ? searchPerson : '' %>" />
+      <button type="submit">Search</button>
+      <% if (searchPerson) { %>
+        <a href="/search"><button type="button" class="clear-btn">Clear Search</button></a>
+      <% } %>
+    </form>
+  </div>
+  <% if (searchPerson && personActivity.length > 0) { %>
+ <% if (searchPerson) { %>
+  <h1 style="
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: #FF1493;
+    margin-top: 30px;
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(to right, #ffccff, #ffe6ff);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  ">
+     <span style="color: #FF1493"><%= searchPerson %></span> 
+  </h1>
+  <h3>| 🧑 Owner: Sohail Jutt | 📞 Contact: 03006450610</h3>
+<% } %>
+
+
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Type</th><th>Detail</th><th>Rate</th><th>Amount</th><th>Running Total</th></tr>
+      </thead>
+      <tbody>
+        <% personActivity.forEach(entry => { %>
+          <tr class="<%= entry.type.includes('Money') ? 'money-row' : '' %>">
+            <td><%= new Date(entry.time).toLocaleString() %></td>
+            <td><%= entry.type %></td>
+            <td><%= entry.detail %></td>
+            <td><%= entry.rate %></td>
+            <td>Rs. <%= entry.amount.toLocaleString() %></td>
+            <td>
+              <strong>Rs. <%= Math.abs(entry.runningTotal).toLocaleString() %></strong><br>
+              <strong style="color: <%= entry.runningTotal >= 0 ? 'green' : 'red' %>">
+                (<%= entry.runningTotal >= 0 ? 'You will Receive' : 'You will Pay' %>)
+              </strong>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <div class="summary-box <%= totalActivity >= 0 ? '' : 'loss' %>">
+      <strong>Net Balance:</strong> Rs. <%= Math.abs(totalActivity).toLocaleString() %>
+      (Final amount <%= totalActivity >= 0 ? 'to be Received from' : 'to be Paid to' %> <%= searchPerson %>)
+    </div>
+  <% } else if (searchPerson) { %>
+    <h3>No records found for: <%= searchPerson %></h3>
+  <% } %>
+</div>
+
+</body>
+</html>

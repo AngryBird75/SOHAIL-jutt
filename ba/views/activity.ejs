@@ -1,0 +1,91 @@
+<%- include('partials/header', { title: 'Activity Log' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <h2>Today's Activity</h2>
+  <h4>📦 Today's Product Log</h4>
+  <table>
+    <thead><tr><th>Time</th><th>Type</th><th>Person</th><th>Product</th><th>Weight</th><th>Rate</th><th>Price</th></tr></thead>
+    <tbody>
+      <% todayRecords.forEach(r => { %>
+        <tr>
+          <td><%= new Date(r.time).toLocaleTimeString() %></td>
+          <td><%= r.type.charAt(0).toUpperCase() + r.type.slice(1) %></td>
+          <td><%= r.person %></td>
+          <td><%= r.product %></td>
+          <td><%= r.weight %> kg</td>
+          <td>Rs. <%= r.rate %></td>
+          <td>Rs. <%= r.price.toLocaleString() %></td>
+        </tr>
+      <% }) %>
+      <% if (todayRecords.length === 0) { %> <tr><td colspan="7">No product activity today.</td></tr> <% } %>
+    </tbody>
+  </table>
+
+  <h4>💰 Today's Money Log</h4>
+  <table>
+    <thead><tr><th>Time</th><th>Type</th><th>Person</th><th>Amount</th><th>Method</th><th>Bank</th></tr></thead>
+    <tbody>
+      <% todayMoney.forEach(m => { %>
+        <tr class="money-row">
+          <td><%= new Date(m.time).toLocaleTimeString() %></td>
+          <td><%= m.type.charAt(0).toUpperCase() + m.type.slice(1) %></td>
+          <td><%= m.person %></td>
+          <td>Rs. <%= m.amount.toLocaleString() %></td>
+          <td><%= m.paymentType %></td>
+          <td><%= m.bankName || 'N/A' %></td>
+        </tr>
+      <% }) %>
+      <% if (todayMoney.length === 0) { %> <tr><td colspan="6">No money transactions today.</td></tr> <% } %>
+    </tbody>
+  </table>
+  
+  <hr style="margin: 40px 0;">
+
+  <h2>Full History & Summary</h2>
+  <div class="summary-box <%= profit >= 0 ? '' : 'loss' %>">
+      <% if (profit >= 0) { %>
+          <p><strong>Total Business Profit: Rs. <%= profit.toLocaleString() %></strong></p>
+      <% } else { %>
+          <p><strong>Total Business Loss: Rs. <%= Math.abs(profit).toLocaleString() %></strong></p>
+      <% } %>
+  </div>
+
+  <h4 style="margin-top: 30px;">📦 All Product Logs</h4>
+  <table>
+    <thead><tr><th>Date</th><th>Type</th><th>Person</th><th>Product</th><th>Weight</th><th>Rate</th><th>Price</th></tr></thead>
+    <tbody>
+      <% allRecords.forEach(r => { %>
+        <tr>
+          <td><%= new Date(r.time).toLocaleString() %></td>
+          <td><%= r.type.charAt(0).toUpperCase() + r.type.slice(1) %></td>
+          <td><%= r.person %></td>
+          <td><%= r.product %></td>
+          <td><%= r.weight %> kg</td>
+          <td>Rs. <%= r.rate %></td>
+          <td>Rs. <%= r.price.toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <h4>💰 All Money Logs</h4>
+  <table>
+    <thead><tr><th>Date</th><th>Type</th><th>Person</th><th>Amount</th><th>Method</th><th>Bank</th></tr></thead>
+    <tbody>
+      <% allMoney.forEach(m => { %>
+        <tr class="money-row">
+          <td><%= new Date(m.time).toLocaleString() %></td>
+          <td><%= m.type.charAt(0).toUpperCase() + m.type.slice(1) %></td>
+          <td><%= m.person %></td>
+          <td>Rs. <%= m.amount.toLocaleString() %></td>
+          <td><%= m.paymentType %></td>
+          <td><%= m.bankName || 'N/A' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

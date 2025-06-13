@@ -1,0 +1,288 @@
+/* General Body & Typography */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+h1, h2, h3, h4 {
+  color: #1a237e; /* Dark Blue */
+}
+
+a {
+  text-decoration: none;
+  color: #2962ff; /* Bright Blue */
+}
+
+/* Main Container */
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #1a237e; /* Dark Blue */
+  padding: 15px 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.navbar .brand {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.navbar .nav-links a {
+  color: white;
+  margin: 0 15px;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+.navbar .nav-links a:hover, .navbar .nav-links a.active {
+  color: #ffc107; /* Amber */
+}
+.navbar .logout-btn {
+    background-color: #d32f2f; /* Red */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.navbar .logout-btn:hover {
+    background-color: #b71c1c;
+}
+
+
+/* Login Page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a237e 0%, #2962ff 100%);
+}
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 350px;
+}
+.login-box h1 {
+  margin-bottom: 25px;
+}
+.login-box .error {
+    color: #d32f2f;
+    background: #ffcdd2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Dashboard */
+/* NOTE: Your dashboard grid is already responsive thanks to `auto-fit` and `minmax`. No changes needed here! */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+.dashboard-card {
+    background: #e3f2fd;
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 5px solid #2962ff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.dashboard-card h3 {
+    margin-top: 0;
+}
+.dashboard-card a {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1a237e;
+}
+
+/* Forms */
+form {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+.form-section {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+.form-section h2 {
+  margin-top: 0;
+  border-bottom: 2px solid #2962ff;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+/* NOTE: Your form grid is also already responsive! No changes needed here. */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: center;
+}
+input[type="text"], input[type="number"], input[type="password"], select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Important */
+  transition: border-color 0.3s;
+}
+input:focus, select:focus {
+    border-color: #2962ff;
+    outline: none;
+}
+button[type="submit"] {
+  background-color: #2962ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+button[type="submit"]:hover {
+  background-color: #0d47a1;
+}
+.clear-btn {
+    background-color: #6c757d;
+    margin-left: 10px;
+}
+.clear-btn:hover {
+    background-color: #495057;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+th, td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 15px;
+  text-align: left;
+}
+thead tr {
+  background-color: #1a237e;
+  color: white;
+}
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+tbody tr:hover {
+    background-color: #e3f2fd;
+}
+.money-row td {
+    color: #c62828; /* Darker Red for text */
+    font-weight: 500;
+}
+
+/* Summary Sections */
+.summary-box {
+    background: #e8f5e9; /* Light Green */
+    border-left: 5px solid #2e7d32; /* Green */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.summary-box.loss {
+    background: #ffebee; /* Light Red */
+    border-left: 5px solid #c62828; /* Red */
+}
+.summary-box strong {
+    font-size: 1.2em;
+}
+
+/******************************************/
+/*          RESPONSIVE STYLES             */
+/*  Styles for tablets and mobile phones  */
+/******************************************/
+
+/* This new class is for making tables scrollable. See instructions below. */
+.table-responsive-wrapper {
+    display: block;
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
+
+@media screen and (max-width: 768px) {
+  
+  /* General adjustments for smaller screens */
+  .container {
+    margin: 10px;
+    padding: 15px;
+    width: auto; /* Allow container to be flexible */
+  }
+
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.4em; }
+
+  /* Stack navigation items vertically */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    gap: 15px; /* Add space between stacked items */
+  }
+  
+  .navbar .nav-links {
+    display: flex;
+    flex-direction: column; /* Stack the nav links */
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .navbar .nav-links a {
+    margin: 0; /* Remove horizontal margins */
+  }
+
+  /* Adjust login box for mobile */
+  .login-box {
+    width: 90%; /* Use percentage width */
+    max-width: 350px;
+    padding: 25px;
+  }
+  
+  /* Adjust form layout and buttons */
+  form {
+      padding: 15px;
+  }
+
+  .clear-btn {
+      margin-top: 10px; /* Stack the clear button below the submit button */
+      margin-left: 0;
+  }
+
+  /* Make table headers less prominent and adjust padding */
+  th, td {
+      padding: 10px 8px;
+  }
+
+}
