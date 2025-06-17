@@ -13,37 +13,31 @@
     </form>
   </div>
   <% if (searchPerson && personActivity.length > 0) { %>
- <% if (searchPerson) { %>
-  <h1 style="
-    text-align: center;
-    font-size: 3em;
-    font-weight: bold;
-    color: #FF1493;
-    margin-top: 30px;
-    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
-    text-transform: capitalize;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    background: linear-gradient(to right, #ffccff, #ffe6ff);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-  ">
-     <span style="color: #FF1493"><%= searchPerson %></span> 
-  </h1>
-  <h3>| 🧑 Owner: Sohail Jutt | 📞 Contact: 03006450610</h3>
-<% } %>
-
+  <% if (searchPerson) { %>
+    <h1 style="
+      text-align: center;
+      font-size: 3em;
+      font-weight: bold;
+      color: #FF1493;
+      font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+      text-transform: capitalize;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      background: linear-gradient(to right, #ffccff, #ffe6ff);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);      
+    ">
+      <span style="color: #FF1493"><%= searchPerson %></span> 
+    </h1>
+    <h3>| Allah Waris Roter Stater |🧑 Owner: Sohail Jutt | 📞03006450610</h3>
+  <% } %>
 
     <table>
       <thead>
         <tr><th>Date</th><th>Type</th><th>Detail</th><th>Rate</th><th>Amount</th><th>Running Total</th></tr>
       </thead>
       <tbody>
-        <% personActivity.forEach(entry => { %>
+        <% personActivity.sort((a, b) => new Date(a.time) - new Date(b.time)).forEach(entry => { %>
           <tr class="<%= entry.type.includes('Money') ? 'money-row' : '' %>">
-            <td><%= new Date(entry.time).toLocaleString() %></td>
+            <td><%= new Date(entry.time).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></td>
             <td><%= entry.type %></td>
             <td><%= entry.detail %></td>
             <td><%= entry.rate %></td>
@@ -51,7 +45,7 @@
             <td>
               <strong>Rs. <%= Math.abs(entry.runningTotal).toLocaleString() %></strong><br>
               <strong style="color: <%= entry.runningTotal >= 0 ? 'green' : 'red' %>">
-                (<%= entry.runningTotal >= 0 ? 'You will Receive' : 'You will Pay' %>)
+                (<%= entry.runningTotal >= 0 ? 'You will Sent' : 'You will Receive' %>)
               </strong>
             </td>
           </tr>
@@ -60,12 +54,27 @@
     </table>
     <div class="summary-box <%= totalActivity >= 0 ? '' : 'loss' %>">
       <strong>Net Balance:</strong> Rs. <%= Math.abs(totalActivity).toLocaleString() %>
-      (Final amount <%= totalActivity >= 0 ? 'to be Received from' : 'to be Paid to' %> <%= searchPerson %>)
+      (Final amount <%= totalActivity >= 0 ? 'to be Paid to' : 'to be Received from' %> <%= searchPerson %>)
     </div>
   <% } else if (searchPerson) { %>
     <h3>No records found for: <%= searchPerson %></h3>
   <% } %>
-</div>
 
+  <% if (allPersons && allPersons.length > 0) { %>
+    <div style="margin-top: 50px;">
+      <h2 style="text-align: center;">📋 All Persons</h2>
+      <ul style="list-style: none; padding-left: 0; text-align: center;">
+        <% allPersons.forEach(person => { %>
+          <li style="margin: 10px 0;">
+            <a href="/search?person=<%= encodeURIComponent(person) %>" 
+               style="text-decoration: none; font-weight: bold; font-size: 1.2em; color: #0056b3;">
+              👤 <%= person %>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+</div>
 </body>
 </html>

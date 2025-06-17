@@ -14,6 +14,7 @@
           <option value="Cheque">Cheque</option>
           <option value="Bank">Bank Transfer</option>
         </select>
+        <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
       </div>
       <div id="sendBank" style="display:none; margin-top: 10px;">
         Bank Name: <input name="bankName" placeholder="Bank Name & Details" />
@@ -35,8 +36,9 @@
           <option value="Cheque">Cheque</option>
           <option value="Bank">Bank Transfer</option>
         </select>
+        <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
       </div>
-       <div id="receiveBank" style="display:none; margin-top: 10px;">
+      <div id="receiveBank" style="display:none; margin-top: 10px;">
         Bank Name: <input name="bankName" placeholder="Bank Name & Details" />
       </div>
       <br>
