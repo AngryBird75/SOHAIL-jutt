@@ -1,0 +1,102 @@
+<%- include('partials/header', { title: 'Search Person' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <div class="form-section">
+    <h2>🔍 Search Person Details</h2>
+    <form method="GET" action="/search">
+      <input name="person" placeholder="Enter person name" required value="<%= typeof searchPerson !== 'undefined' ? searchPerson : '' %>" />
+      <button type="submit">Search</button>
+      <% if (searchPerson) { %>
+        <a href="/search"><button type="button" class="clear-btn">Clear Search</button></a>
+      <% } %>
+    </form>
+  </div>
+
+  <% if (searchPerson && personActivity.length > 0) { %>
+    <h1 style="
+      text-align: center;
+      font-size: 3em;
+      font-weight: bold;
+      color: #FF1493;
+      font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+      text-transform: capitalize;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      background: linear-gradient(to right, #ffccff, #ffe6ff);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);      
+    ">
+      <span style="color: #FF1493"><%= searchPerson %></span> 
+    </h1>
+    <h3>| Allah Waris Roter Stater |🧑 Owner: Sohail Jutt | 📞03006450610</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Detail</th>
+          <th>Rate</th>
+          <th>Amount</th>
+          <th>Running Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% personActivity.sort((a, b) => new Date(a.time) - new Date(b.time)).forEach(entry => { %>
+          <tr class="
+            <%= entry.type.includes('Money') ? 'money-row' : '' %>
+            <%= (entry.rate == 0 || entry.rate === '0') ? 'zero-rate-row' : '' %>
+          ">
+            <td><%= new Date(entry.time).toLocaleString('en-GB', {
+              day: '2-digit', month: '2-digit', year: 'numeric',
+  
+            }) %></td>
+            <td><%= entry.type %></td>
+            <td><%= entry.detail %></td>
+            <td><%= entry.rate %></td>
+            <td>Rs. <%= entry.amount.toLocaleString() %></td>
+            <td>
+              <strong>Rs. <%= Math.abs(entry.runningTotal).toLocaleString() %></strong><br>
+              <strong style="color: <%= entry.runningTotal >= 0 ? 'red' : 'green' %>">
+                (<%= entry.runningTotal >= 0 ? 'You will Sent' : 'You will Receive' %>)
+              </strong>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <div class="summary-box <%= totalActivity >= 0 ? '' : 'loss' %>">
+      <strong>Net Balance:</strong> Rs. <%= Math.abs(totalActivity).toLocaleString() %>
+      (Final amount <%= totalActivity >= 0 ? 'to be Paid to' : 'to be Received from' %> <%= searchPerson %>)
+    </div>
+  <% } else if (searchPerson) { %>
+    
+    <h3>No records found for: <%= searchPerson %></h3>
+  <% } %>
+
+  <% if (allPersons && allPersons.length > 0) { %>
+    <div style="margin-top: 50px;">
+      <h2 style="text-align: center;">📋 All Persons</h2>
+      <ul style="list-style: none; padding-left: 0; text-align: center;">
+        <% allPersons.forEach(person => { %>
+          <li style="margin: 10px 0;">
+            <a href="/search?person=<%= encodeURIComponent(person) %>" 
+               style="text-decoration: none; font-weight: bold; font-size: 1.2em; color: #0056b3;">
+              👤 <%= person %>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+</div>
+
+<style>
+  .zero-rate-row {
+    background-color: #e0f0ff !important;
+    color: #6b2bcb;
+    font-weight: bold;
+  }
+</style>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<%- include('partials/header', { title: 'Home' }) %>
+
+<!-- Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background: #f0f0f0;
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .navbar a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+  }
+
+  .navbar a:hover {
+    color: #008080;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2em;
+    color: #008080;
+  }
+
+  .hero img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .hero p {
+    max-width: 90%;
+    margin: auto;
+    font-size: 1em;
+  }
+
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .section.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .section img {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .section p {
+    max-width: 500px;
+    font-size: 1em;
+    line-height: 1.5;
+    margin: 0 auto;
+  }
+
+  .gallery-section {
+    padding: 40px 20px;
+    background: #f9f9f9;
+    text-align: center;
+  }
+
+  .gallery-section h2 {
+    font-size: 2em;
+    color: #008080;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .gallery-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  .contact-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fafafa;
+    margin-top: 40px;
+  }
+
+  .contact-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    font-size: 1.5em;
+  }
+
+  .contact-icons a {
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+
+  .contact-icons a:hover {
+    transform: scale(1.1);
+  }
+
+  /* MEDIA QUERIES */
+  @media (min-width: 768px) {
+    .hero h1 {
+      font-size: 2.5em;
+    }
+
+    .hero img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .section {
+      flex-wrap: nowrap;
+    }
+
+    .section.reverse {
+      flex-direction: row-reverse;
+    }
+  }
+</style>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="/">🏠 Home</a>
+  <a href="#gallery">🖼️ Gallery</a>
+  <a href="/login">🔐 Login</a>
+  <a href="#contact">📞 Contact</a>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>Welcome to Allah Waris Ruter Stater</h1>
+  <img src="/images/owner.jpg" alt="Owner Picture">
+  <h2>About Our Work</h2>
+  <p>
+    Allah Waris Ruter Stater is a trusted business run by Sohail Jutt.
+    We specialize in high-quality ruter stater and offer reliable and efficient services to our customers.
+  </p>
+</div>
+
+<!-- Section 1 -->
+<div class="section">
+  <div>
+    <h3>What is a Ruter Stater?</h3>
+   <p>
+  A <strong>Ruter Stater</strong> is an essential electrical device designed to manage and regulate the voltage and current flow in motors and heavy-duty machinery. It plays a key role in controlling the initial inrush of current when a motor starts, preventing sudden surges that could damage the equipment or lead to inefficiencies. Ruter staters are commonly used in agricultural pumps, industrial panels, compressors, and large generators to ensure a smooth, controlled, and safe start-up and shutdown process. <br><br>
+  These devices also help maintain motor health over time by minimizing wear and tear caused by direct starts. By offering overload protection, phase failure detection, and automatic shutdown features, Ruter Staters are vital in prolonging equipment life and ensuring operational safety in demanding environments.
+</p>
+
+  </div>
+  <img src="/images/rutor.jpg" alt="Ruter Image">
+</div>
+
+<!-- Section 2 -->
+<div class="section reverse">
+  <div>
+    <h3>Our Fields of Work</h3>
+   <p>
+  We provide reliable and customized electrical solutions for a wide range of applications including agricultural motors, industrial control panels, home-based voltage regulators, and tailored automation projects. Our systems are designed to optimize performance, reduce energy loss, and ensure long-term durability even in harsh environments.<br><br>
+  From motor protection devices to complete starter panels, our work is built around quality components and modern engineering practices. Whether you're a farmer needing a strong start for tube well motors or a factory owner requiring robust industrial setups, we deliver precision-built solutions to match your exact needs. Every product undergoes strict testing for performance, quality, and safety to ensure our clients get nothing less than the best.
+</p>
+
+  </div>
+<img src="/images/field.jpg" alt="Field Work Image" style="width: auto; height: 500px ; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+
+</div>
+
+<!-- Gallery Section -->
+<div class="gallery-section" id="gallery">
+  <h2>Our Work Gallery</h2>
+  <div class="gallery-grid">
+    <img src="/images/gallery1.jpg" alt="Gallery Image 1">
+    <img src="/images/gallery2.jpg" alt="Gallery Image 2">
+    <img src="/images/gallery3.jpg" alt="Gallery Image 3">
+    <img src="/images/gallery4.jpg" alt="Gallery Image 4">
+    <img src="/images/gallery5.jpg" alt="Gallery Image 5">
+    <img src="/images/gallery6.jpg" alt="Gallery Image 6">
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div class="contact-section" id="contact">
+  <h2>Contact Us</h2>
+  <p style="font-size: 1.1em;">Connect with us on social media or reach out directly:</p>
+  <div class="contact-icons">
+    <a href="https://wa.me/qr/WW65UQQ5RDCJH1" target="_blank" style="color: #25D366;">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a href="https://www.facebook.com/share/1AbEcCRodE/" target="_blank" style="color: #1877F2;">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+    <a href="https://www.instagram.com/sohail.cheema1122/profilecard/?igsh=ZHVtZmFxZzV2Y3B3" target="_blank" style="color: #E1306C;">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

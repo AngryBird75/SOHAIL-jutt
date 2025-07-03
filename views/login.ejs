@@ -1,0 +1,127 @@
+<%- include('partials/header', { title: 'Login' }) %>
+
+<style>
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-box {
+    position: relative;
+    padding: 40px;
+    border-radius: 12px;
+    background: #fff0f5;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+  }
+
+  .home-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FF1493;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .home-btn:hover {
+    background-color: #e01382;
+  }
+
+  .form-grid input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    background: #FF1493;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background: #e01382;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+<div class="login-container">
+  <div class="login-box">
+    <!-- Top-Right Home Button -->
+    <a href="/" class="home-btn">🏠 Home</a>
+
+    <h1 style="
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #FF1493;
+      font-family: Didot, serif;
+      text-transform: capitalize;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      background: linear-gradient(to right, #ffccff, #ffe6ff);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      padding: 5px 15px;
+    ">Allah Waris Ruter Stater</h1>
+
+    <h4 style="font-family: Didot, serif;">OWNER: SOHAIL JUTT</h4>
+    <h4 style="font-family: Didot, serif;">CONTACT: 03006450610</h4>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <div class="form-grid">
+        <input type="text" name="username" placeholder="Username" required>
+
+        <div style="position: relative;">
+          <input type="password" name="password" id="password" placeholder="Password" required>
+          <span onclick="togglePassword()" style="
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+          ">👁️</span>
+        </div>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    const pwd = document.getElementById("password");
+    pwd.type = pwd.type === "password" ? "text" : "password";
+  }
+</script>
+
+</body>
+</html>

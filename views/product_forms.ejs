@@ -1,0 +1,53 @@
+<%- include('partials/header', { title: 'Manage Products' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <div class="form-section">
+    <h2>📅 Receive Product</h2>
+    <form method="POST" action="/product/add">
+      <input type="hidden" name="type" value="receive" />
+      <div class="form-grid">
+        <input name="product" placeholder="Product Name" list="productList" required />
+        <input name="person" placeholder="Person Name" list="personList" required />
+        <input name="weight" type="number" step="any" placeholder="Weight (kg)" required />
+        <input name="rate" type="number" step="any" placeholder="Rate" required />
+        <input name="date" type="date" required />
+      </div>
+      <br>
+      <button type="submit">Add Received Product</button>
+    </form>
+  </div>
+
+  <div class="form-section">
+    <h2>📤 Send Product</h2>
+    <form method="POST" action="/product/add">
+      <input type="hidden" name="type" value="send" />
+      <div class="form-grid">
+        <input name="product" placeholder="Product Name" list="productList" required />
+        <input name="person" placeholder="Person Name" list="personList" required />
+        <input name="weight" type="number" step="any" placeholder="Weight (kg)" required />
+        <input name="rate" type="number" step="any" placeholder="Rate" required />
+        <input name="date" type="date" required />
+      </div>
+      <br>
+      <button type="submit">Add Sent Product</button>
+    </form>
+  </div>
+</div>
+
+<!-- Datalist for Suggested Person Names -->
+<datalist id="personList">
+  <% allPersons.forEach(function(person) { %>
+    <option value="<%= person %>">
+  <% }); %>
+</datalist>
+
+<!-- Datalist for Suggested Product Names -->
+<datalist id="productList">
+  <% allProducts.forEach(function(product) { %>
+    <option value="<%= product %>">
+  <% }); %>
+</datalist>
+
+</body>
+</html>

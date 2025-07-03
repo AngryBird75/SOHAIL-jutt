@@ -1,0 +1,83 @@
+<%- include('partials/header', { title: 'Manage Money' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <div class="form-section">
+    <h2>💸 Send Money</h2>
+    <form method="POST" action="/money/add">
+      <input type="hidden" name="type" value="send" />
+      <div class="form-grid">
+        <input name="person" placeholder="Person Name" list="personList" required />
+        <input name="amount" type="number" placeholder="Amount" required />
+        <select name="paymentType" id="sendType" onchange="toggleBank('sendType', 'sendBank')">
+          <option value="Cash">Cash</option>
+          <option value="Cash with Bank Detail">Cash with Bank Detail</option>
+          <option value="Cheque">Cheque</option>
+          <option value="Cheque with Detail">Cheque with Detail</option>
+          <option value="Bank">Bank Transfer</option>
+        </select>
+        <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
+      </div>
+      <div id="sendBank" style="display:none; margin-top: 10px;">
+        Bank Name: <input name="bankName" placeholder="Bank Name & Details" />
+      </div>
+      <br>
+      <button type="submit">Send Money</button>
+    </form>
+  </div>
+
+  <div class="form-section">
+    <h2>💵 Receive Money</h2>
+    <form method="POST" action="/money/add">
+      <input type="hidden" name="type" value="receive" />
+      <div class="form-grid">
+        <input name="person" placeholder="Person Name" list="personList" required />
+        <input name="amount" type="number" placeholder="Amount" required />
+        <select name="paymentType" id="receiveType" onchange="toggleBank('receiveType', 'receiveBank')">
+          <option value="Cash">Cash</option>
+          <option value="Cash with Bank Detail">Cash with Bank Detail</option>
+          <option value="Cheque">Cheque</option>
+          <option value="Cheque with Detail">Cheque with Detail</option>
+          <option value="Bank">Bank Transfer</option>
+        </select>
+        <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
+      </div>
+      <div id="receiveBank" style="display:none; margin-top: 10px;">
+        Bank Name: <input name="bankName" placeholder="Bank Name & Details" />
+      </div>
+      <br>
+      <button type="submit">Receive Money</button>
+    </form>
+  </div>
+</div>
+
+<!-- Shared Person Names Datalist -->
+<datalist id="personList">
+  <% allPersons.forEach(function(person) { %>
+    <option value="<%= person %>">
+  <% }); %>
+</datalist>
+
+<script>
+  function toggleBank(selectId, bankDivId) {
+    const selected = document.getElementById(selectId).value;
+    const bankDiv = document.getElementById(bankDivId);
+    const bankInput = bankDiv.querySelector('input');
+    if (
+      selected === 'Cheque' ||
+      selected === 'Bank' ||
+      selected === 'Cash with Bank Detail' ||
+      selected === 'Cheque with Detail'
+    ) {
+      bankDiv.style.display = 'block';
+      bankInput.setAttribute('required', true);
+    } else {
+      bankDiv.style.display = 'none';
+      bankInput.removeAttribute('required');
+      bankInput.value = '';
+    }
+  }
+</script>
+
+</body>
+</html>

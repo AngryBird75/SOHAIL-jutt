@@ -1,0 +1,48 @@
+<%- include('partials/header', { title: 'Product Details' }) %>
+<%- include('partials/nav') %>
+
+<div class="container">
+  <h2>📊 Product Inventory Summary</h2>
+  <table class="inventory-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Received (kg)</th>
+        <th>Sent (kg)</th>
+        <th>Remaining (kg)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const p of productSummary) { %>
+        <tr>
+          <td><%= p.product %></td>
+          <td><%= p.received.toFixed(2) %></td>
+          <td><%= p.sent.toFixed(2) %></td>
+          <td><%= (p.received - p.sent).toFixed(2) %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    border: 1px solid blue;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .inventory-table th {
+    background-color: #0056b3;
+  }
+</style>
+
+</body>
+</html>
