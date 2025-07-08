@@ -20,10 +20,10 @@
     <select name="paymentType" required>
       <option value="Cash" <%= money.paymentType === 'Cash' ? 'selected' : '' %>>Cash</option>
       <option value="Cheque" <%= money.paymentType === 'Cheque' ? 'selected' : '' %>>Cheque</option>
-      <option value="Bank" <%= money.paymentType === 'Bank' ? 'selected' : '' %>>Bank</option>
+      <option value="Bank" <%= money.paymentType === 'Bank' ? 'selected' : '' %>>Online</option>
     </select>
 
-    <label>Bank Name (if Cheque/Bank):</label>
+    <label>Bank Name (if Cheque/Online):</label>
     <input type="text" name="bankName" value="<%= money.bankName %>">
 
     <label>Date:</label>

@@ -1,11 +1,16 @@
+require('dotenv').config(); // Load environment variables
+
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const app = express();
 
+// Load environment variables or use defaults
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/businessApp';
 const port = process.env.PORT || 80;
+const sessionSecret = process.env.SESSION_SECRET || 'default-session-secret';
 
+// Connect to MongoDB
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -149,7 +154,7 @@ app.post('/money/add', requireLogin, async (req, res) => {
     person,
     amount: parseFloat(amount),
     paymentType,
-    bankName: (paymentType === 'Cheque' || paymentType === 'Bank' || paymentType.includes('Detail')) ? bankName : '',
+    bankName: (paymentType === 'Cheque' || paymentType === 'Online' || paymentType.includes('Detail')) ? bankName : '',
     date: normalizedDate
   }).save();
   res.redirect('/activity');
@@ -169,7 +174,7 @@ app.post('/money/edit/:id', requireLogin, async (req, res) => {
     person,
     amount: parseFloat(amount),
     paymentType,
-    bankName: (paymentType === 'Cheque' || paymentType === 'Bank' || paymentType.includes('Detail')) ? bankName : '',
+    bankName: (paymentType === 'Cheque' || paymentType === 'Online' || paymentType.includes('Detail')) ? bankName : '',
     date: normalizedDate
   });
   res.redirect('/activity');

@@ -2,6 +2,7 @@
 <%- include('partials/nav') %>
 
 <div class="container">
+  <!-- Send Money Form -->
   <div class="form-section">
     <h2>💸 Send Money</h2>
     <form method="POST" action="/money/add">
@@ -13,8 +14,7 @@
           <option value="Cash">Cash</option>
           <option value="Cash with Bank Detail">Cash with Bank Detail</option>
           <option value="Cheque">Cheque</option>
-          <option value="Cheque with Detail">Cheque with Detail</option>
-          <option value="Bank">Bank Transfer</option>
+          <option value="Online">Online</option>
         </select>
         <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
       </div>
@@ -26,6 +26,7 @@
     </form>
   </div>
 
+  <!-- Receive Money Form -->
   <div class="form-section">
     <h2>💵 Receive Money</h2>
     <form method="POST" action="/money/add">
@@ -37,8 +38,7 @@
           <option value="Cash">Cash</option>
           <option value="Cash with Bank Detail">Cash with Bank Detail</option>
           <option value="Cheque">Cheque</option>
-          <option value="Cheque with Detail">Cheque with Detail</option>
-          <option value="Bank">Bank Transfer</option>
+          <option value="Online">Online</option>
         </select>
         <input name="date" type="date" value="<%= new Date().toISOString().slice(0,10) %>" required />
       </div>
@@ -51,32 +51,34 @@
   </div>
 </div>
 
-<!-- Shared Person Names Datalist -->
+<!-- Datalist for Person Names -->
 <datalist id="personList">
-  <% allPersons.forEach(function(person) { %>
+  <% allPersons.forEach(person => { %>
     <option value="<%= person %>">
   <% }); %>
 </datalist>
 
+<!-- JavaScript to Toggle Bank Input -->
 <script>
   function toggleBank(selectId, bankDivId) {
     const selected = document.getElementById(selectId).value;
     const bankDiv = document.getElementById(bankDivId);
     const bankInput = bankDiv.querySelector('input');
-    if (
-      selected === 'Cheque' ||
-      selected === 'Bank' ||
-      selected === 'Cash with Bank Detail' ||
-      selected === 'Cheque with Detail'
-    ) {
+
+    if (['Cheque', 'Online', 'Cash with Bank Detail'].includes(selected)) {
       bankDiv.style.display = 'block';
-      bankInput.setAttribute('required', true);
+      bankInput.required = true;
     } else {
       bankDiv.style.display = 'none';
-      bankInput.removeAttribute('required');
+      bankInput.required = false;
       bankInput.value = '';
     }
   }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    toggleBank('sendType', 'sendBank');
+    toggleBank('receiveType', 'receiveBank');
+  });
 </script>
 
 </body>
